@@ -6,7 +6,7 @@
 /*   By: pnona <pnona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 19:47:46 by pnona             #+#    #+#             */
-/*   Updated: 2022/03/19 16:56:59 by pnona            ###   ########.fr       */
+/*   Updated: 2022/03/19 18:33:56 by pnona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	sender(int bit, int pid)
 	{
 		if (kill(pid, SIGUSR1) < 0)
 		{
-			write(1, "Wrong PID", 19);
+			write(1, "Wrong PID\n", 11);
 			exit(0);
 		}
 	}
@@ -28,7 +28,7 @@ static void	sender(int bit, int pid)
 	{
 		if (kill(pid, SIGUSR2) < 0)
 		{
-			write(1, "Wrong PID", 19);
+			write(1, "Wrong PID\n", 11);
 			exit(0);
 		}
 	}
