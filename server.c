@@ -6,11 +6,13 @@
 /*   By: pnona <pnona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:38:09 by pnona             #+#    #+#             */
-/*   Updated: 2022/03/13 19:43:08 by pnona            ###   ########.fr       */
+/*   Updated: 2022/03/19 16:44:33 by pnona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static t_message	g_message;
 
 static void	init_message(t_message *message)
 {
@@ -53,12 +55,12 @@ static void	get_message(int sig, siginfo_t *info, void *context)
 	g_message.str[g_message.char_num] |= (bit << (7 - g_message.bit_num));
 	if (++g_message.bit_num == 8)
 	{
-		if (g_messagestr[g_message.char_num] == '\0')
+		if (g_message.str[g_message.char_num] == '\0')
 		{
 			g_message.flag = 0;
 			write_message();
 			kill(info->si_pid, SIGUSR2);
-			writte(1, "\n", 1);
+			write(1, "\n", 1);
 			return ;
 		}
 		g_message.bit_num = 0;
@@ -90,8 +92,6 @@ static void	decoder(void)
 		pause();
 }
 
-static t_message	g_message;
-
 int	main(void)
 {
 	int		pid;
@@ -100,7 +100,7 @@ int	main(void)
 	g_message.str = message;
 	pid = getpid();
 	write(1, "My PID: ", 8);
-	ft_putnbr(pid);
+	ft_putnbr_fd(pid, 1);
 	write(1, "\n", 1);
 	while (1)
 	{

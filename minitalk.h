@@ -6,7 +6,7 @@
 /*   By: pnona <pnona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 19:43:52 by pnona             #+#    #+#             */
-/*   Updated: 2022/03/13 19:47:18 by pnona            ###   ########.fr       */
+/*   Updated: 2022/03/19 16:04:20 by pnona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ struct	s_message
 };
 
 typedef struct s_message	t_message;
+
+int		ft_atoi(const char *str);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
